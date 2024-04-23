@@ -73,7 +73,7 @@ class GeneralizedInteractionModule(InteractionModule):
             target_embeddings = self.get_item_embeddings(target_ids)
         torch._assert(len(target_embeddings.size()) == 3, "len(target_embeddings.size()) must be 3")
 
-        with torch.autocast(enabled=True, dtype=torch.bfloat16, device_type="cuda"):
+        with torch.autocast(enabled=True, dtype=torch.float16, device_type="cuda"):
             return self._ndp_module(
                 input_embeddings=input_embeddings,  # [B, self._input_embedding_dim]
                 item_embeddings=target_embeddings,  # [1/B, X, self._item_embedding_dim]
