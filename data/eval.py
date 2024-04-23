@@ -153,12 +153,9 @@ def eval_metrics_v2_from_tensors(
     )
     eval_ranks = torch.where(eval_rank_indices == k, MAX_K + 1, eval_rank_indices + 1)
     print('all_item_ids:', len(eval_state.all_item_ids))
-    print('target_ids:', target_ids)
-    print('eval_ranks:', eval_ranks) 
+    print('target_ids:', target_ids.shape, target_ids)
+    print('eval_ranks:', eval_ranks.shape, eval_ranks) 
     output = {
-        "all_item_ids:": len(eval_state.all_item_ids), 
-        "target_ids":target_ids,
-        "eval_ranks":eval_ranks,
         "ndcg@1": torch.where(
             eval_ranks <= 1,
             1.0 / torch.log2(eval_ranks + 1),
