@@ -149,4 +149,6 @@ class DatasetV2(torch.utils.data.Dataset):
             "target_ratings": target_ratings,
             "target_timestamps": target_timestamps,
         }
+        if user_id == 5871:
+            print(ret)
         return ret
