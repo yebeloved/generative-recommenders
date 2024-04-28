@@ -347,12 +347,14 @@ def train_fn(
 
             opt.zero_grad()
             input_embeddings = model.module.get_item_embeddings(seq_features.past_ids)
+            print("input_embeddings:", input_embeddings.shape)
             seq_embeddings = model(
                 past_lengths=seq_features.past_lengths,
                 past_ids=seq_features.past_ids,
                 past_embeddings=input_embeddings,
                 past_payloads=seq_features.past_payloads,
             )  # [B, X]
+            print("seq_embeddings:", seq_embeddings.shape)
 
             supervision_ids = seq_features.past_ids
 
@@ -378,7 +380,8 @@ def train_fn(
             )  # [B, N]
             if rank == 0:
                 writer.add_scalar("losses/ar_loss", loss, batch_id)
-
+            print("seq_features.past_ids:", seq_features.past_ids)
+            print("supervision_ids:",supervision_ids)
             loss.backward()
 
             # Optional linear warmup.
