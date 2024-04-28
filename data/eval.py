@@ -152,15 +152,15 @@ def eval_metrics_v2_from_tensors(
         dim=1,
     )
     eval_ranks = torch.where(eval_rank_indices == k, MAX_K + 1, eval_rank_indices + 1)
-    print("past_lengths:", seq_features.past_lengths)
-    print("past_ids:", seq_features.past_ids.shape)
-    print("past_payloads:", seq_features.past_payloads)
-    print('user_max_batch_size:', user_max_batch_size)
-    print('shared_input_embeddings:', shared_input_embeddings.shape)
-    print('all_item_ids:', len(eval_state.all_item_ids), "k:", k, "max_k:", MAX_K)
-    print('eval_top_k_ids:', eval_top_k_ids.shape, eval_top_k_ids)
-    print('target_ids:', target_ids.shape, target_ids)
-    print('eval_ranks:', eval_ranks.shape, eval_ranks) 
+    # print("past_lengths:", seq_features.past_lengths)
+    # print("past_ids:", seq_features.past_ids.shape)
+    # print("past_payloads:", seq_features.past_payloads)
+    # print('user_max_batch_size:', user_max_batch_size)
+    # print('shared_input_embeddings:', shared_input_embeddings.shape)
+    # print('all_item_ids:', len(eval_state.all_item_ids), "k:", k, "max_k:", MAX_K)
+    # print('eval_top_k_ids:', eval_top_k_ids.shape, eval_top_k_ids)
+    # print('target_ids:', target_ids.shape, target_ids)
+    # print('eval_ranks:', eval_ranks.shape, eval_ranks) 
     output = {
         "ndcg@1": torch.where(
             eval_ranks <= 1,
